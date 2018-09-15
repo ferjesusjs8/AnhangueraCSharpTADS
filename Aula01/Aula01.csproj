@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
     <Compile Include="DAL_Usuario.cs" />
+    <Compile Include="Encryptor.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

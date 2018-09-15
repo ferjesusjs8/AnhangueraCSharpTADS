@@ -1,3 +1,9 @@
+IF(db_id(N'aula01') IS NULL)
+BEGIN 
+CREATE DATABASE aula01
+END
+GO
+
 USE aula01
 GO
 BEGIN

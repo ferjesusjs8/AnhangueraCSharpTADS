@@ -106,7 +106,7 @@
             this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuarios.Location = new System.Drawing.Point(265, 25);
             this.listaUsuarios.Name = "listaUsuarios";
-            this.listaUsuarios.Size = new System.Drawing.Size(240, 150);
+            this.listaUsuarios.Size = new System.Drawing.Size(510, 155);
             this.listaUsuarios.TabIndex = 7;
             // 
             // lblMensagem
@@ -119,7 +119,7 @@
             // 
             // btnAtualizarDados
             // 
-            this.btnAtualizarDados.Location = new System.Drawing.Point(329, 186);
+            this.btnAtualizarDados.Location = new System.Drawing.Point(462, 235);
             this.btnAtualizarDados.Name = "btnAtualizarDados";
             this.btnAtualizarDados.Size = new System.Drawing.Size(97, 24);
             this.btnAtualizarDados.TabIndex = 9;

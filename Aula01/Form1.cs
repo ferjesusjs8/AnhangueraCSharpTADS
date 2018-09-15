@@ -9,11 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Aula01
 {
     public partial class Form1 : Form
     {
-        private DAL_Usuario conecta = new DAL_Usuario(@"Data Source=.\TEW_SQLEXPRESS;Initial Catalog=Aula01;Integrated Security=TRUE");
+        private DAL_Usuario conecta = new DAL_Usuario(Properties.Settings.Default.ConnectionString);
 
         public Form1()
         {
@@ -23,6 +24,7 @@ namespace Aula01
         private void btnCadastro_Click(object sender, EventArgs e)
         {
             int insere;
+
             try
             {
                 Usuario usuario = new Usuario();

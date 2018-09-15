@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+using System.Security.Cryptography;
 
 namespace Aula01
 {
@@ -15,44 +17,36 @@ namespace Aula01
 
         public int InsereUsuario(Usuario usuario)
         {
-            string cmd = "INSERT INTO USUARIO (nome, email, senha) VALUES ('{0}','{1}','{2}')";
-            return base.executarComando(string.Format(cmd, usuario.Nome, usuario.Email, usuario.Senha));
+
+            var senha = Encryptor.MD5Hash(usuario.Senha);
+
+            return base.executarComando($"INSERT INTO Usuario (Nome, Email, Senha) Values ('{usuario.Nome}', '{usuario.Email}', '{senha}')");
         }
 
         public int lerUsuario()
         {
-            
+
             return 0;
         }
-    }
 
-    public List<Usuario> ListaUsuario()
-    {
-        List<Usuario> usuarios = new List<Usuario>();
-
-        using (con = new SqlConnection(connectionString))
+        public List<Usuario> ListaUsuario()
         {
-            con.Open();
-            comando = new SqlCommand("SELECT * FROM USUARIO", con);
+            List<Usuario> usuarios = new List<Usuario>();
+            DataTable lista = base.ListaDados("SELECT * FROM USUARIO");
 
-            SqlDataReader reader = comando.ExecuteReader();
-
-            while (reader.Read())
+            foreach (DataRow r in lista.Rows)
             {
-                Usuario usuario = new Usuario();
-                usuario.Id = Convert.ToInt32(reader["id"]);
-                usuario.Nome = reader["nome"].ToString();
-                usuario.Email = reader["email"].ToString();
-                usuario.Senha = reader["senha"].ToString();
+                Usuario user = new Usuario();
 
-                usuarios.Add(usuario);
+                user.Id     = Convert.ToInt32(r["IdUsuario"].ToString());
+                user.Nome   = r["Nome"].ToString();
+                user.Email  = r["Email"].ToString();
+                user.Senha  = r["Senha"].ToString();
+
+                usuarios.Add(user);
             }
 
-            reader.Close();
-            con.Close();
+            return usuarios;
         }
-
-        return usuarios;
     }
-}
 }
